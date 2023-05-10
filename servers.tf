@@ -88,3 +88,7 @@ resource "aws_instance" "R1_payment" {
     Name = "R1_payment"
   }
 }
+
+output "R1_Payment" {
+  value = aws_instance.R1_payment.public_ip
+}
