@@ -6,9 +6,11 @@ data "aws_ami" "centos" {
   most_recent      = true
   name_regex       = "Centos-8-DevOps-Practice"
 }
+
 data "aws_security_group" "Ravi_Secuity_All" {
   name = "Ravi_Secuity_All"
 }
+
 output "ami" {
   value = data.aws_ami.centos.image_id
 }
