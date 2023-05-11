@@ -1,8 +1,13 @@
-
+variable "variance_type" {
+  default = var.variance_type
+}
 data "aws_ami" "centos" {
   owners           = ["973714476881"]
   most_recent      = true
   name_regex       = "Centos-8-DevOps-Practice"
+}
+data "aws_security_group" "Ravi_Secuity_All" {
+  name = "Ravi_Secuity_All"
 }
 output "ami" {
   value = data.aws_ami.centos.image_id
@@ -10,8 +15,8 @@ output "ami" {
 
 resource "aws_instance" "R1_frontend" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_frontend"
   }
@@ -27,8 +32,8 @@ resource "aws_route53_record" "R1_frontend" {
 
 resource "aws_instance" "R1_mongodb" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_mongodb"
   }
@@ -45,8 +50,8 @@ resource "aws_route53_record" "R1_mongodb" {
 
 resource "aws_instance" "R1_Redis" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_Redis"
   }
@@ -61,8 +66,8 @@ resource "aws_route53_record" "R1_Redis" {
 
 resource "aws_instance" "R1_catalogue" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_catalogue"
   }
@@ -77,8 +82,8 @@ resource "aws_route53_record" "R1_catalogue" {
 
 resource "aws_instance" "R1_cart" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_cart"
   }
@@ -93,8 +98,8 @@ resource "aws_route53_record" "R1_cart" {
 
 resource "aws_instance" "R1_user" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_user"
   }
@@ -109,8 +114,8 @@ resource "aws_route53_record" "R1_user" {
 
 resource "aws_instance" "R1_mysql" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_mysql"
   }
@@ -125,8 +130,8 @@ resource "aws_route53_record" "R1_mysql" {
 
 resource "aws_instance" "R1_shipping" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_shipping"
   }
@@ -141,8 +146,8 @@ resource "aws_route53_record" "R1_shipping" {
 
 resource "aws_instance" "R1_rabbitmq" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_rabbitmq"
   }
@@ -157,8 +162,8 @@ resource "aws_route53_record" "R1_rabbitmq" {
 
 resource "aws_instance" "R1_payment" {
   ami           = data.aws_ami.centos.image_id
-  instance_type = "t3.micro"
-
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
   tags = {
     Name = "R1_payment"
   }
