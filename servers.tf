@@ -1,6 +1,19 @@
 variable "variance_type" {
   default = "t3.small"
 }
+variable "components" {
+  default = [ "R1_R1_frontend","R1_mongodb","R1_catalogue"]
+}
+
+resource "aws_instance" "instance" {
+  count = length(var.components)
+  instance_type = var.variance_type
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
+  tags = {
+    Name = var.components[count.index]
+  }
+}
+
 data "aws_ami" "centos" {
   owners           = ["973714476881"]
   most_recent      = true
