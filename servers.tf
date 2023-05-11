@@ -51,7 +51,7 @@ variable "components" {
   }
 
 }
-/*
+
 resource "aws_instance" "instance" {
   for_each = var.components
   ami = data.aws_ami.centos.image_id
@@ -60,7 +60,7 @@ resource "aws_instance" "instance" {
   tags = {
     Name = var.components[count.index]
   }
-}*/
+}
 data "aws_ami" "centos" {
   owners           = ["973714476881"]
   most_recent      = true
