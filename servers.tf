@@ -1,5 +1,5 @@
 variable "variance_type" {
-  default = var.variance_type
+  default = "t3.small"
 }
 data "aws_ami" "centos" {
   owners           = ["973714476881"]
