@@ -35,7 +35,7 @@ resource "aws_route53_record" "R1_frontend" {
 resource "aws_instance" "R1_mongodb" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_mongodb"
   }
