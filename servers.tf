@@ -2,10 +2,65 @@ variable "variance_type" {
   default = "t3.small"
 }
 variable "components" {
-  default = [ "R1_R1_frontend","R1_mongodb","R1_catalogue"]
+  default = {
+
+    frontend = {
+      name =""
+      instance_type = "t3.small"
+    }
+    mongodb = {
+    name ="mongodb"
+    instance_type = "t3.micro"
+    }
+    catalogue = {
+      name ="catalogue"
+      instance_type = "t3.micro"
+    }
+    redis = {
+    name ="redis"
+    instance_type = "t3.small"
+    }
+    user = {
+      name ="user"
+      instance_type = "t3.small"
+    }
+    cart = {
+    name ="cart"
+    instance_type = "t3.small"
+    }
+    mysql = {
+      name ="mysql"
+      instance_type = "t3.small"
+    }
+    shipping = {
+    name ="shipping"
+    instance_type = "t3.medium"
+    }
+    rabbitmq= {
+      name ="rabbitmq"
+      instance_type = "t3.small"
+    }
+   payment = {
+    name ="payment"
+    instance_type = "t3.small"
+    }
+    dispatch = {
+      name ="dispatch"
+      instance_type = "t3.small"
+    }
+  }
+
 }
-
-
+/*
+resource "aws_instance" "instance" {
+  for_each = var.components
+  ami = data.aws_ami.centos.image_id
+  instance_type = each.value["instance_type"]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
+  tags = {
+    Name = var.components[count.index]
+  }
+}*/
 data "aws_ami" "centos" {
   owners           = ["973714476881"]
   most_recent      = true
@@ -19,7 +74,7 @@ data "aws_security_group" "Ravi_Secuity_All" {
 output "ami" {
   value = data.aws_ami.centos.image_id
 }
-
+/*
 resource "aws_instance" "instance" {
   count = length(var.components)
   ami   = data.aws_ami.centos.image_id
@@ -29,7 +84,7 @@ resource "aws_instance" "instance" {
     Name = var.components[count.index]
   }
 }
-
+*/
 #
 #resource "aws_instance" "R1_frontend" {
 #  ami           = data.aws_ami.centos.image_id
