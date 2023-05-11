@@ -53,7 +53,7 @@ resource "aws_route53_record" "R1_mongodb" {
 resource "aws_instance" "R1_Redis" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_Redis"
   }
@@ -69,7 +69,7 @@ resource "aws_route53_record" "R1_Redis" {
 resource "aws_instance" "R1_catalogue" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_catalogue"
   }
@@ -85,7 +85,7 @@ resource "aws_route53_record" "R1_catalogue" {
 resource "aws_instance" "R1_cart" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_cart"
   }
@@ -101,7 +101,7 @@ resource "aws_route53_record" "R1_cart" {
 resource "aws_instance" "R1_user" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_user"
   }
@@ -117,7 +117,7 @@ resource "aws_route53_record" "R1_user" {
 resource "aws_instance" "R1_mysql" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_mysql"
   }
@@ -133,7 +133,7 @@ resource "aws_route53_record" "R1_mysql" {
 resource "aws_instance" "R1_shipping" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_shipping"
   }
@@ -149,7 +149,7 @@ resource "aws_route53_record" "R1_shipping" {
 resource "aws_instance" "R1_rabbitmq" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_rabbitmq"
   }
@@ -165,7 +165,7 @@ resource "aws_route53_record" "R1_rabbitmq" {
 resource "aws_instance" "R1_payment" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.variance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All]
+  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
     Name = "R1_payment"
   }
