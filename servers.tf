@@ -5,47 +5,47 @@ variable "components" {
   default = {
 
     frontend = {
-      hName ="R1_frontend"
+      name ="frontend"
       instance_type = "t3.small"
     }
     mongodb = {
-      hName ="R1_mongodb"
+      name ="mongodb"
     instance_type = "t3.micro"
     }
     catalogue = {
-      hName ="R1_catalogue"
+      name ="catalogue"
       instance_type = "t3.micro"
     }
     redis = {
-      hName ="R1_redis"
+      name ="redis"
     instance_type = "t3.small"
     }
     user = {
-      hName ="R1_user"
+      name ="user"
       instance_type = "t3.small"
     }
     cart = {
-      hName ="R1_cart"
+      name ="cart"
     instance_type = "t3.small"
     }
     mysql = {
-      hName ="R1_mysql"
+      name ="mysql"
       instance_type = "t3.small"
     }
     shipping = {
-      hName ="R1_shipping"
+      name ="shipping"
     instance_type = "t3.medium"
     }
     rabbitmq= {
-      hName ="R1_rabbitmq"
+      name ="rabbitmq"
       instance_type = "t3.small"
     }
    payment = {
-     hName ="R1_payment"
+     name ="payment"
     instance_type = "t3.small"
     }
     dispatch = {
-      hName ="R1_dispatch"
+      name ="dispatch"
       instance_type = "t3.small"
     }
   }
@@ -67,7 +67,7 @@ resource "aws_instance" "instance" {
   instance_type = each.value["instance_type"]
   vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
   tags = {
-    Name = each.value["hName"]
+    Name = each.value["name"]
   }
 }
 
@@ -75,11 +75,11 @@ resource "aws_route53_record" "records" {
   for_each = var.components
   zone_id = "Z09746683LPCR02M9AALO"
   name    = "${each.value["name"]}-dev.r1devopsb.online"
-  #name = "R1_mongodb-dev.r1devopsb.online"
+  #name = "mongodb-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
 
-   records = [aws_instance.instance[each.value["hName"]].private_ip]
+   records = [aws_instance.instance[each.value["name"]].private_ip]
   #records = [ aws_instance.instance[each.value["name"]].private_ip ]
 }
 
@@ -102,169 +102,169 @@ resource "aws_instance" "instance" {
 }
 */
 #
-#resource "aws_instance" "R1_frontend" {
+#resource "aws_instance" "frontend" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
 #  tags = {
-#    Name = "R1_frontend"
+#    Name = "frontend"
 #  }
 #}
 #
-#resource "aws_route53_record" "R1_frontend" {
+#resource "aws_route53_record" "frontend" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "frontend-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_frontend.private_ip]
+#  records = [aws_instance.frontend.private_ip]
 #}
 #
-#resource "aws_instance" "R1_mongodb" {
+#resource "aws_instance" "mongodb" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_mongodb"
+#    Name = "mongodb"
 #  }
 #}
 #
-#resource "aws_route53_record" "R1_mongodb" {
+#resource "aws_route53_record" "mongodb" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "mongodb-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_mongodb.private_ip]
+#  records = [aws_instance.mongodb.private_ip]
 #}
 #
 #
-#resource "aws_instance" "R1_Redis" {
+#resource "aws_instance" "Redis" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_Redis"
+#    Name = "Redis"
 #  }
 #}
-#resource "aws_route53_record" "R1_Redis" {
+#resource "aws_route53_record" "Redis" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "redis-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_Redis.private_ip]
+#  records = [aws_instance.Redis.private_ip]
 #}
 #
-##resource "aws_instance" "R1_catalogue" {
+##resource "aws_instance" "catalogue" {
 ##  ami           = data.aws_ami.centos.image_id
 ##  instance_type = var.variance_type
 ##  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 ##  tags = {
-##    Name = "R1_catalogue"
+##    Name = "catalogue"
 ##  }
 ##}
-#resource "aws_route53_record" "R1_catalogue" {
+#resource "aws_route53_record" "catalogue" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "catalogue-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_catalogue.private_ip]
+#  records = [aws_instance.catalogue.private_ip]
 #}
 #
-#resource "aws_instance" "R1_cart" {
+#resource "aws_instance" "cart" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_cart"
+#    Name = "cart"
 #  }
 #}
-#resource "aws_route53_record" "R1_cart" {
+#resource "aws_route53_record" "cart" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "cart-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_cart.private_ip]
+#  records = [aws_instance.cart.private_ip]
 #}
 #
-#resource "aws_instance" "R1_user" {
+#resource "aws_instance" "user" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_user"
+#    Name = "user"
 #  }
 #}
-#resource "aws_route53_record" "R1_user" {
+#resource "aws_route53_record" "user" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "user-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_user.private_ip]
+#  records = [aws_instance.user.private_ip]
 #}
 #
-#resource "aws_instance" "R1_mysql" {
+#resource "aws_instance" "mysql" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_mysql"
+#    Name = "mysql"
 #  }
 #}
-#resource "aws_route53_record" "R1_mysql" {
+#resource "aws_route53_record" "mysql" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "mysql-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_mysql.private_ip]
+#  records = [aws_instance.mysql.private_ip]
 #}
 #
-#resource "aws_instance" "R1_shipping" {
+#resource "aws_instance" "shipping" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_shipping"
+#    Name = "shipping"
 #  }
 #}
-#resource "aws_route53_record" "R1_shipping" {
+#resource "aws_route53_record" "shipping" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "shipping-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_shipping.private_ip]
+#  records = [aws_instance.shipping.private_ip]
 #}
 #
-#resource "aws_instance" "R1_rabbitmq" {
+#resource "aws_instance" "rabbitmq" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_rabbitmq"
+#    Name = "rabbitmq"
 #  }
 #}
-#resource "aws_route53_record" "R1_rabbitmq" {
+#resource "aws_route53_record" "rabbitmq" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "rabbitmq-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_rabbitmq.private_ip]
+#  records = [aws_instance.rabbitmq.private_ip]
 #}
 #
-#resource "aws_instance" "R1_payment" {
+#resource "aws_instance" "payment" {
 #  ami           = data.aws_ami.centos.image_id
 #  instance_type = var.variance_type
 #  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
 #  tags = {
-#    Name = "R1_payment"
+#    Name = "payment"
 #  }
 #}
-#resource "aws_route53_record" "R1_payment" {
+#resource "aws_route53_record" "payment" {
 #  zone_id = "Z09746683LPCR02M9AALO"
 #  name    = "payment-dev.r1devopsb.online"
 #  type    = "A"
 #  ttl     = 30
-#  records = [aws_instance.R1_payment.private_ip]
+#  records = [aws_instance.payment.private_ip]
 #}
 #
-#output "R1_Payment" {
-#  value = aws_instance.R1_payment.public_ip
+#output "Payment" {
+#  value = aws_instance.payment.public_ip
 #}
