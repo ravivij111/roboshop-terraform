@@ -61,6 +61,7 @@ resource "aws_instance" "instance" {
     Name = each.value["name"]
   }
 }
+/*
 
 resource "aws_route53_record" "records" {
   for_each = var.components
@@ -68,8 +69,9 @@ resource "aws_route53_record" "records" {
   name    = "${each.value["name"]}-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.instance[each.value["name"]].private_ip ]
+  records = [ aws_instance.instance[each.value["name"]].private_ip ]
 }
+*/
 
 data "aws_ami" "centos" {
   owners           = ["973714476881"]
