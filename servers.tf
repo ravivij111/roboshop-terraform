@@ -4,49 +4,49 @@ variable "variance_type" {
 variable "components" {
   default = {
 
-    R1_rontend = {
-      name ="R1_frontend"
+    frontend = {
+      name ="frontend"
       instance_type = "t3.small"
     }
 
-    R1_mongodb = {
-      name ="R1_mongodb"
+    mongodb = {
+      name ="mongodb"
     instance_type = "t3.micro"
     }
-    R1_catalogue = {
-      name ="R1_catalogue"
+    catalogue = {
+      name ="catalogue"
       instance_type = "t3.micro"
     }
-    R1_redis = {
-      name ="R1_redis"
+    redis = {
+      name ="redis"
     instance_type = "t3.small"
     }
-    R1_user = {
-      name ="R1_user"
+    user = {
+      name ="user"
       instance_type = "t3.small"
     }
-    R1_cart = {
-      name ="R1_cart"
+    cart = {
+      name ="cart"
     instance_type = "t3.small"
     }
-    R1_mysql = {
-      name ="R1_mysql"
+    mysql = {
+      name ="mysql"
       instance_type = "t3.small"
     }
-    R1_shipping = {
-      name ="R1_shipping"
+    shipping = {
+      name ="shipping"
     instance_type = "t3.medium"
     }
-    R1_rabbitmq= {
-      name ="R1_rabbitmq"
+    rabbitmq= {
+      name ="rabbitmq"
       instance_type = "t3.small"
     }
-    R1_payment = {
-     name ="R1_payment"
+    payment = {
+     name ="payment"
     instance_type = "t3.small"
     }
-    R1_dispatch = {
-      name ="R1_dispatch"
+    dispatch = {
+      name ="dispatch"
       instance_type = "t3.small"
     }
   }
@@ -76,7 +76,6 @@ resource "aws_route53_record" "records" {
   for_each = var.components
   zone_id = "Z09746683LPCR02M9AALO"
   name    = "${each.value["name"]}-dev.r1devopsb.online"
-  #name = "mongodb-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
 
