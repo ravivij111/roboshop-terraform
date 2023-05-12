@@ -4,48 +4,48 @@ variable "variance_type" {
 variable "components" {
   default = {
 
-    frontend = {
-      name ="frontend"
+    R1_rontend = {
+      name ="R1_frontend"
       instance_type = "t3.small"
     }
-    mongodb = {
-      name ="mongodb"
+    R1_mongodb = {
+      name ="R1_mongodb"
     instance_type = "t3.micro"
     }
-    catalogue = {
-      name ="catalogue"
+    R1_catalogue = {
+      name ="R1_catalogue"
       instance_type = "t3.micro"
     }
-    redis = {
-      name ="redis"
+    R1_redis = {
+      name ="R1_redis"
     instance_type = "t3.small"
     }
-    user = {
-      name ="user"
+    R1_user = {
+      name ="R1_user"
       instance_type = "t3.small"
     }
-    cart = {
-      name ="cart"
+    R1_cart = {
+      name ="R1_cart"
     instance_type = "t3.small"
     }
-    mysql = {
-      name ="mysql"
+    R1_mysql = {
+      name ="R1_mysql"
       instance_type = "t3.small"
     }
-    shipping = {
-      name ="shipping"
+    R1_shipping = {
+      name ="R1_shipping"
     instance_type = "t3.medium"
     }
-    rabbitmq= {
-      name ="rabbitmq"
+    R1_rabbitmq= {
+      name ="R1_rabbitmq"
       instance_type = "t3.small"
     }
-   payment = {
-     name ="payment"
+    R1_payment = {
+     name ="R1_payment"
     instance_type = "t3.small"
     }
-    dispatch = {
-      name ="dispatch"
+    R1_dispatch = {
+      name ="R1_dispatch"
       instance_type = "t3.small"
     }
   }
