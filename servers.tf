@@ -5,47 +5,47 @@ variable "components" {
   default = {
 
     frontend = {
-      name =""
+      name ="R1_frontend"
       instance_type = "t3.small"
     }
     mongodb = {
-    name ="mongodb"
+    name ="R1_mongodb"
     instance_type = "t3.micro"
     }
     catalogue = {
-      name ="catalogue"
+      name ="R1_catalogue"
       instance_type = "t3.micro"
     }
     redis = {
-    name ="redis"
+    name ="R1_redis"
     instance_type = "t3.small"
     }
     user = {
-      name ="user"
+      name ="R1_user"
       instance_type = "t3.small"
     }
     cart = {
-    name ="cart"
+    name ="R1_cart"
     instance_type = "t3.small"
     }
     mysql = {
-      name ="mysql"
+      name ="R1_mysql"
       instance_type = "t3.small"
     }
     shipping = {
-    name ="shipping"
+    name ="R1_shipping"
     instance_type = "t3.medium"
     }
     rabbitmq= {
-      name ="rabbitmq"
+      name ="R1_rabbitmq"
       instance_type = "t3.small"
     }
    payment = {
-    name ="payment"
+    name ="R1_payment"
     instance_type = "t3.small"
     }
     dispatch = {
-      name ="dispatch"
+      name ="R1_dispatch"
       instance_type = "t3.small"
     }
   }
@@ -57,10 +57,19 @@ resource "aws_instance" "instance" {
   ami = data.aws_ami.centos.image_id
   instance_type = each.value["instance_type"]
   vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
- /* tags = {
-    Name = var.components[count.index]
-  }*/
+  tags = {
+    Name = each.value["name"]
+  }
 }
+resource "aws_route53_record" "records" {
+  for_each = var.components
+  zone_id = "Z09746683LPCR02M9AALO"
+  name    = "${each.value["name"]}-dev.r1devopsb.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.instance[each.value["name"]].private_ip ]
+}
+
 data "aws_ami" "centos" {
   owners           = ["973714476881"]
   most_recent      = true
