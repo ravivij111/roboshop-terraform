@@ -5,51 +5,60 @@ variable "components" {
   default = {
 
     frontend = {
-      name ="R1_frontend"
+      hName ="R1_frontend"
       instance_type = "t3.small"
     }
     mongodb = {
-    name ="R1_mongodb"
+      hName ="R1_mongodb"
     instance_type = "t3.micro"
     }
     catalogue = {
-      name ="R1_catalogue"
+      hName ="R1_catalogue"
       instance_type = "t3.micro"
     }
     redis = {
-    name ="R1_redis"
+      hName ="R1_redis"
     instance_type = "t3.small"
     }
     user = {
-      name ="R1_user"
+      hName ="R1_user"
       instance_type = "t3.small"
     }
     cart = {
-    name ="R1_cart"
+      hName ="R1_cart"
     instance_type = "t3.small"
     }
     mysql = {
-      name ="R1_mysql"
+      hName ="R1_mysql"
       instance_type = "t3.small"
     }
     shipping = {
-    name ="R1_shipping"
+      hName ="R1_shipping"
     instance_type = "t3.medium"
     }
     rabbitmq= {
-      name ="R1_rabbitmq"
+      hName ="R1_rabbitmq"
       instance_type = "t3.small"
     }
    payment = {
-    name ="R1_payment"
+     hName ="R1_payment"
     instance_type = "t3.small"
     }
     dispatch = {
-      name ="R1_dispatch"
+      hName ="R1_dispatch"
       instance_type = "t3.small"
     }
   }
 
+}
+data "aws_security_group" "Ravi_Secuity_All" {
+  name = "Ravi_Secuity_All"
+}
+
+data "aws_ami" "centos" {
+  owners           = ["973714476881"]
+  most_recent      = true
+  name_regex       = "Centos-8-DevOps-Practice"
 }
 
 resource "aws_instance" "instance" {
@@ -58,36 +67,25 @@ resource "aws_instance" "instance" {
   instance_type = each.value["instance_type"]
   vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
   tags = {
-    Name = each.value["name"]
+    Name = each.value["hName"]
   }
 }
 
-/*
-
 resource "aws_route53_record" "records" {
-  #for_each = var.components
+  for_each = var.components
   zone_id = "Z09746683LPCR02M9AALO"
-  #name    = "${each.value["name"]}-dev.r1devopsb.online"
-  name = "R1_mongodb-dev.r1devopsb.online"
+  name    = "${each.value["name"]}-dev.r1devopsb.online"
+  #name = "R1_mongodb-dev.r1devopsb.online"
   type    = "A"
-  ttl     = "R1_mongodb-dev.r1devopsb.online".
-  //
-  records = aws_instance."R1_mongodb-dev.r1devopsb.online"
-  // records = [aws_instance.R1_frontend.private_ip]
+  ttl     = 30
+
+   records = [aws_instance.instance[each.value["hName"]].private_ip]
   #records = [ aws_instance.instance[each.value["name"]].private_ip ]
 }
-*/
 
 
-data "aws_ami" "centos" {
-  owners           = ["973714476881"]
-  most_recent      = true
-  name_regex       = "Centos-8-DevOps-Practice"
-}
 
-data "aws_security_group" "Ravi_Secuity_All" {
-  name = "Ravi_Secuity_All"
-}
+
 
 output "ami" {
   value = data.aws_ami.centos.image_id
