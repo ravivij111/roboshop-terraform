@@ -62,15 +62,21 @@ resource "aws_instance" "instance" {
   }
 }
 
+/*
 
 resource "aws_route53_record" "records" {
-  for_each = var.components
+  #for_each = var.components
   zone_id = "Z09746683LPCR02M9AALO"
-  name    = "${each.value["name"]}-dev.r1devopsb.online"
+  #name    = "${each.value["name"]}-dev.r1devopsb.online"
+  name = "R1_mongodb-dev.r1devopsb.online"
   type    = "A"
-  ttl     = 30
-  records = [ aws_instance.instance[each.value["name"]].private_ip ]
+  ttl     = "R1_mongodb-dev.r1devopsb.online".
+  //
+  records = aws_instance."R1_mongodb-dev.r1devopsb.online"
+  // records = [aws_instance.R1_frontend.private_ip]
+  #records = [ aws_instance.instance[each.value["name"]].private_ip ]
 }
+*/
 
 
 data "aws_ami" "centos" {
