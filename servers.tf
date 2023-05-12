@@ -8,6 +8,7 @@ variable "components" {
       name ="R1_frontend"
       instance_type = "t3.small"
     }
+
     R1_mongodb = {
       name ="R1_mongodb"
     instance_type = "t3.micro"
