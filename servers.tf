@@ -16,7 +16,6 @@ resource "aws_instance" "instance" {
         host     = self.private_ip
       }
 
-      provisioner "remote-exec" {
         inline = [
           "rm -rf roboshop-shell",
           "git clone https://github.com/ravivij111/roboshop-shell.git",
@@ -24,10 +23,6 @@ resource "aws_instance" "instance" {
           "sudo bash ${each.value["name"]}.sh}"
         ]
       }
-  }
-
-
-
 }
 
 resource "aws_route53_record" "records" {
