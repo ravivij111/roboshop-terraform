@@ -3,7 +3,9 @@ resource "null_resource" "instance" {
 
   provisioner "local-exec" {
 
-    command = "echo **** Key Name - ${each.value["instance_type"]} *"
+    command = "echo **** Key Name - ${each.key} *"
+
+    #command = "echo **** Key Name - ${each.value["instance_type"]} *"
 
   }
 }
