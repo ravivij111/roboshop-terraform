@@ -1,6 +1,6 @@
 
 components = {
-  default = {
+
     frontend = {
       name          = "frontend"
       instance_type = "t3.small"
@@ -46,7 +46,6 @@ components = {
       name          = "dispatch"
       instance_type = "t3.small"
     }
-  }
 }
 
 env="prod"
