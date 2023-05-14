@@ -32,6 +32,7 @@ resource "null_resource" "provisioner" {
       "rm -rf roboshop-shell",
       "git clone https://github.com/ravivij111/roboshop-shell.git",
       "cd roboshop-shell",
+      "echo ****** component name is ${each.value["name"]} ********",
       "sudo bash ${each.value["name"]}.sh}"
     ]
   }
