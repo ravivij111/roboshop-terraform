@@ -38,6 +38,13 @@ components = {
       name          = "rabbitmq"
       instance_type = "t3.small"
     }
-
+  payment = {
+    name          = "payment"
+    instance_type = "t3.small"
+  }
+  dispatch = {
+    name          = "dispatch"
+    instance_type = "t3.small"
+  }
 }
 env="dev"
