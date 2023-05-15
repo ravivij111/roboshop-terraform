@@ -228,3 +228,4 @@ resource "aws_instance" "instance" {
 #output "Payment" {
 #  value = aws_instance.payment.public_ip
 #}
+
