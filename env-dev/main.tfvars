@@ -1,7 +1,7 @@
 components = {
 
   frontend = {
-    name          = "frontend"
+    name          = "redis"
     instance_type = "t3.small"
   }
 
