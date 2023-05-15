@@ -19,7 +19,7 @@ resource "aws_route53_record" "records" {
   records = [aws_instance.instance[each.value["name"]].private_ip]
 }
 resource "null_resource" "provisioner" {
-  depends_on = [aws_instance.instance, aws_route53_record.records]
+  depends_on = [aws_route53_record.records]
   for_each               = var.components
   provisioner "remote-exec" {
     connection {
@@ -32,7 +32,7 @@ resource "null_resource" "provisioner" {
     inline = [
       "rm -rf roboshop-shell",
       "git clone https://github.com/ravivij111/roboshop-shell.git",
-      "cd roboshop-shell", "echo pwd"
+      "cd roboshop-shell", "echo pwd",
       "echo ****** component name is ${each.value["name"]} ********",
       "sudo bash ${each.value["name"]}.sh}"
     ]
