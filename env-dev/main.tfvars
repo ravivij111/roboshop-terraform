@@ -1,5 +1,16 @@
-
 components = {
+
+  frontend = {
+    name          = "frontend"
+    instance_type = "t3.small"
+  }
+
+  mongodb = {
+    name          = "mongodb"
+    instance_type = "t3.micro"
+  }
+}
+/*components = {
 
     frontend = {
       name          = "frontend"
@@ -46,5 +57,5 @@ components = {
     name          = "dispatch"
     instance_type = "t3.small"
   }
-}
+}*/
 env="dev"

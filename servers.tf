@@ -32,7 +32,7 @@ resource "null_resource" "provisioner" {
     inline = [
       "rm -rf roboshop-shell",
       "git clone https://github.com/ravivij111/roboshop-shell.git",
-      "cd roboshop-shell", "echo pwd",
+      "cd roboshop-shell", "pwd",
       "echo ****** component name is ${each.value["name"]} ********",
       "sudo bash ${each.value["name"]}.sh}"
     ]
