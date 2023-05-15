@@ -217,15 +217,15 @@ resource "aws_instance" "instance" {
 #    Name = "payment"
 #  }
 #}
-#resource "aws_route53_record" "payment" {
-#  zone_id = "Z09746683LPCR02M9AALO"
-#  name    = "payment-dev.r1devopsb.online"
-#  type    = "A"
-#  ttl     = 30
-#  records = [aws_instance.payment.private_ip]
-#}
-#
-#output "Payment" {
-#  value = aws_instance.payment.public_ip
-#}
+/*resource "aws_route53_record" "payment" {
+  zone_id = "Z09746683LPCR02M9AALO"
+  name    = "payment-dev.r1devopsb.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.payment.private_ip]
+}
+
+output "Payment" {
+  value = aws_instance.payment.public_ip
+}*/
 
