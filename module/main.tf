@@ -1,11 +1,11 @@
 
 resource "aws_instance" "instance" {
-  for_each               = var.components
+
   ami                    = data.aws_ami.centos.image_id
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.Ravi_Secuity_All.id]
   tags                   = {
-    Name = var.component_name
+    Name = local.name
   }
 }
 
@@ -15,8 +15,7 @@ resource "aws_route53_record" "records" {
   name    = "{var.component_name}-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
-
-  records = [aws_instance.instance[each.value["name"]].private_ip]
+  records = [aws_instance.instance.private_ip]
 }
 resource "null_resource" "provisioner" {
   depends_on = [aws_route53_record.records]
@@ -87,6 +86,3 @@ resource "aws_route53_record" "mongodb" {
 output "Payment" {
   value = aws_instance.payment.public_ip
 }*/
-
-
-
