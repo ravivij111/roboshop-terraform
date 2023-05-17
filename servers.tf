@@ -1,3 +1,24 @@
+
+module "database-servers" {
+  for_each = var.database_servers
+  source = "./module"
+  component_name = each.value["name"]
+  env = var.env
+  instance_type = "t3.micro"
+  password = lookup(each.value,"password",null)
+}
+
+module "app-servers" {
+  for_each = var.app_servers
+  source = "./module"
+  component_name = each.value["name"]
+  env = var.env
+  instance_type = "t3.micro"
+  password = lookup(each.value,"password",null)
+}
+
+
+/*
 module "servers" {
   source = "./module"
   for_each = var.components
@@ -6,6 +27,7 @@ module "servers" {
   instance_type = "t3.micro"
   password = lookup(each.value,"password",null)
 }
+*/
 
 
 /*
