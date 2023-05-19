@@ -6,6 +6,8 @@ module "database-servers" {
   env = var.env
   instance_type = "t3.micro"
   password = lookup(each.value,"password",null)
+  provisioner = true
+  app_type ="db"
 }
 
 module "app-servers" {
@@ -15,6 +17,8 @@ module "app-servers" {
   env = var.env
   instance_type = "t3.micro"
   password = lookup(each.value,"password",null)
+  provisioner = true
+  app_type ="app"
 }
 
 
