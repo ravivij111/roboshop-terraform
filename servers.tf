@@ -49,10 +49,6 @@ resource "aws_instance" "instance" {
   tags = {
     Name = each.value["name"]
   }
-
-
-
-
 }
 resource "null_resource" "provisioner" {
   for_each = var.components
