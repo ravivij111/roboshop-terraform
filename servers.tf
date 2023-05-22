@@ -50,6 +50,10 @@ resource "aws_instance" "instance" {
 */
 
 #ami-0b5a2b5b8f2be4ec2
+variable "instance_type" {
+
+  default = "t2.micro"
+}
 
 resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
