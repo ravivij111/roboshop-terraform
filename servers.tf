@@ -68,10 +68,6 @@ resource "aws_instance" "mongodb" {
     Name = "mongodb"
   }
 }
-
-
-
-
 resource "aws_instance" "Redis" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
@@ -157,7 +153,8 @@ data "aws_ami" "centos" {
 
   most_recent      = true
   name_regex       = "Centos-8-DevOps-Practice"
-  owners           = "973714476881"
+  owners           = ["973714476881"]
+
 }
 
 data "aws_security_group" "Ravi_Secuity_All" {
