@@ -266,6 +266,3 @@ resource "aws_route53_record" "dispatch" {
   ttl     = 30
   records = [aws_instance.payment.private_ip]
 }
-
-
-
