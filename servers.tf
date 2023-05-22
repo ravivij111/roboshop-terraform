@@ -139,9 +139,6 @@ output "ami" {
 }
 /*
 
-output "Payment" {
-  value = aws_instance.payment.public_ip
-}
 resource "aws_route53_record" "dispatch" {
   zone_id = var.hosted_zone_id
   name    = "dispatch-dev.r1devopsb.online"
