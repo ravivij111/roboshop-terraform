@@ -59,8 +59,6 @@ variable "hosted_zone_id" {
   default = "Z09194283TYN817J8N83P"
 }
 
-
-
 resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
