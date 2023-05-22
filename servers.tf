@@ -260,7 +260,7 @@ resource "aws_route53_record" "payment" {
 
 resource "aws_route53_record" "dispatch" {
   zone_id = var.hosted_zone_id
-  name    = "payment-dev.r1devopsb.online"
+  name    = "dispatch-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.payment.private_ip]
