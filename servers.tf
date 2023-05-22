@@ -113,6 +113,15 @@ resource "aws_instance" "instance" {
   }
 }
 
+resource "aws_route53_record" "records" {
+  for_each = var.components
+  zone_id = var.hosted_zone_id
+  name    =    "${each.value["name"]}-dev.r1devopsb.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.instance[each.value["name"]].private_ip]
+}
+
 
 data "aws_ami" "centos" {
   most_recent      = true
@@ -132,88 +141,7 @@ output "ami" {
 
 output "Payment" {
   value = aws_instance.payment.public_ip
-}*/
-
-
-/*
-resource "aws_route53_record" "frontend" {
-  zone_id = var.hosted_zone_id
-  name    = "frontend-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.frontend.private_ip]
 }
-
-resource "aws_route53_record" "mongodb" {
-  zone_id = var.hosted_zone_id
-  name    = "mongodb-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.mongodb.private_ip]
-}
-
-resource "aws_route53_record" "catalogue" {
-  zone_id = var.hosted_zone_id
-  name    = "catalogue-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.catalogue.private_ip]
-}
-resource "aws_route53_record" "Redis" {
-  zone_id = var.hosted_zone_id
-  name    = "redis-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.Redis.private_ip]
-}
-
-resource "aws_route53_record" "cart" {
-  zone_id = var.hosted_zone_id
-  name    = "cart-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.cart.private_ip]
-}
-resource "aws_route53_record" "user" {
-  zone_id = var.hosted_zone_id
-  name    = "user-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.user.private_ip]
-}
-
-resource "aws_route53_record" "mysql" {
-  zone_id = var.hosted_zone_id
-  name    = "mysql-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.mysql.private_ip]
-}
-
-resource "aws_route53_record" "shipping" {
-  zone_id = var.hosted_zone_id
-  name    = "shipping-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.shipping.private_ip]
-}
-
-resource "aws_route53_record" "rabbitmq" {
-  zone_id = var.hosted_zone_id
-  name    = "rabbitmq-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.rabbitmq.private_ip]
-}
-
-resource "aws_route53_record" "payment" {
-  zone_id = var.hosted_zone_id
-  name    = "payment-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.payment.private_ip]
-}
-
 resource "aws_route53_record" "dispatch" {
   zone_id = var.hosted_zone_id
   name    = "dispatch-dev.r1devopsb.online"
