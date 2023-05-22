@@ -51,10 +51,6 @@ resource "aws_instance" "instance" {
 
 #ami-0b5a2b5b8f2be4ec2
 
-
-
-
-
 resource "aws_instance" "frontend" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
@@ -63,7 +59,6 @@ resource "aws_instance" "frontend" {
     Name = "frontend"
   }
 }
-
 
 resource "aws_instance" "mongodb" {
   ami           = data.aws_ami.centos.image_id
@@ -114,7 +109,6 @@ resource "aws_instance" "user" {
   }
 }
 
-
 resource "aws_instance" "mysql" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
@@ -132,9 +126,6 @@ resource "aws_instance" "shipping" {
     Name = "shipping"
   }
 }
-
-
-
 resource "aws_instance" "rabbitmq" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
@@ -143,7 +134,6 @@ resource "aws_instance" "rabbitmq" {
     Name = "rabbitmq"
   }
 }
-
 
 resource "aws_instance" "payment" {
   ami           = data.aws_ami.centos.image_id
@@ -179,11 +169,6 @@ data "aws_security_group" "Ravi_Secuity_All" {
 output "ami" {
   value = data.aws_ami.centos.image_id
 }
-
-
-
-
-
 /*
 
 output "Payment" {
