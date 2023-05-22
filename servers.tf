@@ -152,7 +152,7 @@ resource "aws_instance" "dispatch" {
   instance_type = var.instance_type
   vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
   tags = {
-    Name = "payment"
+    Name = "dispatch"
   }
 }
 
