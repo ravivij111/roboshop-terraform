@@ -1,4 +1,4 @@
-components = {
+components1 = {
 
   frontend = {
     name          = "frontend"

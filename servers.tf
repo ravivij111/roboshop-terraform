@@ -49,7 +49,6 @@ resource "aws_instance" "instance" {
 
 #ami-0b5a2b5b8f2be4ec2
 variable "instance_type" {
-
   default = "t2.micro"
 }
 
@@ -57,102 +56,21 @@ variable "hosted_zone_id" {
   default = "Z09194283TYN817J8N83P"
 }
 
-resource "aws_instance" "frontend" {
+variable "components" {
+  default = ["frontend", "mongodb", "catalogue"]
+
+}
+
+resource "aws_instance" "instance" {
+  count = length(var.components)
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
   vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
   tags = {
-    Name = "frontend"
+    Name = var.components[count.index]
   }
 }
 
-resource "aws_instance" "mongodb" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "mongodb"
-  }
-}
-resource "aws_instance" "Redis" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "Redis"
-  }
-}
-
-resource "aws_instance" "catalogue" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "catalogue"
-  }
-}
-
-resource "aws_instance" "cart" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "cart"
-  }
-}
-
-resource "aws_instance" "user" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "user"
-  }
-}
-
-resource "aws_instance" "mysql" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "mysql"
-  }
-}
-
-resource "aws_instance" "shipping" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "shipping"
-  }
-}
-resource "aws_instance" "rabbitmq" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "rabbitmq"
-  }
-}
-
-resource "aws_instance" "payment" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "payment"
-  }
-}
-
-resource "aws_instance" "dispatch" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "dispatch"
-  }
-}
 
 data "aws_ami" "centos" {
   most_recent      = true
@@ -174,6 +92,8 @@ output "Payment" {
   value = aws_instance.payment.public_ip
 }*/
 
+
+/*
 resource "aws_route53_record" "frontend" {
   zone_id = var.hosted_zone_id
   name    = "frontend-dev.r1devopsb.online"
@@ -190,20 +110,19 @@ resource "aws_route53_record" "mongodb" {
   records = [aws_instance.mongodb.private_ip]
 }
 
-resource "aws_route53_record" "Redis" {
-  zone_id = var.hosted_zone_id
-  name    = "redis-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.Redis.private_ip]
-}
-
 resource "aws_route53_record" "catalogue" {
   zone_id = var.hosted_zone_id
   name    = "catalogue-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.catalogue.private_ip]
+}
+resource "aws_route53_record" "Redis" {
+  zone_id = var.hosted_zone_id
+  name    = "redis-dev.r1devopsb.online"
+  type    = "A"
+  ttl     = 30
+  records = [aws_instance.Redis.private_ip]
 }
 
 resource "aws_route53_record" "cart" {
@@ -259,4 +178,4 @@ resource "aws_route53_record" "dispatch" {
   type    = "A"
   ttl     = 30
   records = [aws_instance.dispatch.private_ip]
-}
+}*/
