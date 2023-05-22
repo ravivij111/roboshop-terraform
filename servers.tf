@@ -51,6 +51,7 @@ resource "aws_instance" "instance" {
   }
 }
 resource "null_resource" "provisioner" {
+  depends_on = [aws_instance.instance, aws_route53_record.records]
   for_each = var.components
   connection {
     type     = "ssh"
@@ -63,12 +64,12 @@ resource "null_resource" "provisioner" {
       " rm -rf roboshop-shell ",
       "git clone https://github.com/ravivij111/roboshop-shell.git",
       "cd roboshop-shell",
-      "sudo bash ${each.value["name"]}.sh"
+      "sudo bash ${each.value["name"]}.sh ${lookup(each.value,"password","dummy")}"
     ]
   }
 }
 resource "aws_route53_record" "records" {
-  depends_on = []
+
   for_each = var.components
   zone_id = var.hosted_zone_id
   name    =    "${each.value["name"]}-dev.r1devopsb.online"
