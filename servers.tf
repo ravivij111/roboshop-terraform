@@ -263,5 +263,5 @@ resource "aws_route53_record" "dispatch" {
   name    = "dispatch-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
-  records = [aws_instance.payment.private_ip]
+  records = [aws_instance.dispatch.private_ip]
 }
