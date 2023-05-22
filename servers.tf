@@ -85,7 +85,6 @@ resource "aws_instance" "Redis" {
   }
 }
 
-
 resource "aws_instance" "catalogue" {
   ami           = data.aws_ami.centos.image_id
   instance_type = var.instance_type
