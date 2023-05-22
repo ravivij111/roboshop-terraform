@@ -12,7 +12,7 @@ resource "aws_instance" "instance" {
 
 resource "aws_route53_record" "records" {
 
-  zone_id = "Z09746683LPCR02M9AALO"
+  zone_id = "Z09194283TYN817J8N83P"
   name    = "{var.component_name}-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
