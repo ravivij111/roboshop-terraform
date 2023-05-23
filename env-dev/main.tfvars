@@ -4,7 +4,6 @@ components = {
     name          = "mongodb"
     instance_type = "t3.micro"
   }
-  /*
   frontend = {
       name          = "frontend"
       instance_type = "t3.small"
@@ -45,7 +44,7 @@ components = {
     name          = "payment"
     instance_type = "t3.small"
     password = "roboshop123"
-  }*/
+  }
  /* dispatch = {
     name          = "dispatch"
     instance_type = "t3.small"
