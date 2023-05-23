@@ -4,7 +4,6 @@ components = {
       name          = "frontend"
       instance_type = "t3.small"
     }
-
     mongodb = {
       name          = "mongodb"
       instance_type = "t3.micro"
