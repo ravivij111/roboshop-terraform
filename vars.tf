@@ -1,5 +1,7 @@
 variable "env" {}
+variable "app_servers" {}
+variable "database_servers" {}
+
+
+
 variable "components" {}
-#variable "instance_type" {}
-//variable "component_name" {}
-//variable "password" {}

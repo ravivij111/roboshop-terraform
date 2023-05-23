@@ -19,6 +19,7 @@ resource "aws_route53_record" "records" {
   records = [aws_instance.instance.private_ip]
 }
 resource "null_resource" "provisioner" {
+  count = var.provisioner ? 1 : 0
   depends_on = [aws_route53_record.records]
   triggers = { //If any time the private ip changes
     private_ip = aws_instance.instance.private_ip
@@ -31,7 +32,7 @@ resource "null_resource" "provisioner" {
       host     =  aws_instance.instance.private_ip
     }
 
-    inline =var.app_type == "db"?local.db_command : local.app_commands
+    inline = var.app_type == "db"?local.db_command : local.app_commands
      /*[
       "rm -rf roboshop-shell",
       "git clone https://github.com/ravivij111/roboshop-shell.git",
@@ -109,40 +110,4 @@ resource "aws_instance" "instance" {
   }
 }
 
-resource "aws_instance" "frontend" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id ]
-  tags = {
-    Name = "frontend"
-  }
-}
-
-resource "aws_route53_record" "frontend" {
-  zone_id = "Z09746683LPCR02M9AALO"
-  name    = "frontend-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.frontend.private_ip]
-}
-
-resource "aws_instance" "mongodb" {
-  ami           = data.aws_ami.centos.image_id
-  instance_type = var.instance_type
-  vpc_security_group_ids  = [ data.aws_security_group.Ravi_Secuity_All.id]
-  tags = {
-    Name = "mongodb"
-  }
-}
-
-resource "aws_route53_record" "mongodb" {
-  zone_id = "Z09746683LPCR02M9AALO"
-  name    = "mongodb-dev.r1devopsb.online"
-  type    = "A"
-  ttl     = 30
-  records = [aws_instance.mongodb.private_ip]
-}
-
-output "Payment" {
-  value = aws_instance.payment.public_ip
-}*/
+*/

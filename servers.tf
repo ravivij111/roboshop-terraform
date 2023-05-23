@@ -1,4 +1,4 @@
-/*
+
 module "database-servers" {
   for_each = var.database_servers
   source = "./module"
@@ -11,27 +11,38 @@ module "database-servers" {
 }
 
 module "app-servers" {
+  depends_on = [module.database-servers]
   for_each = var.app_servers
   source = "./module"
   component_name = each.value["name"]
   env = var.env
   instance_type = "t3.micro"
   password = lookup(each.value,"password",null)
-  provisioner = true
   app_type ="app"
-}*/
+}
+
+
+
+
 
 /*
+variable "env" {
+
+}
+variable "components" {
+
+}
 module "servers" {
-  source = "./module"
   for_each = var.components
+  source = "./module"
+
   component_name = each.value["name"]
   env = var.env
   instance_type = "t3.micro"
   password = lookup(each.value,"password",null)
 }*/
 
-
+/*
 #ami-0b5a2b5b8f2be4ec2
 variable "instance_type" {
   default = "t2.micro"
@@ -39,8 +50,8 @@ variable "instance_type" {
 
 variable "hosted_zone_id" {
   default = "Z09194283TYN817J8N83P"
-}
-
+}*/
+/*
 resource "aws_instance" "instance" {
    for_each = var.components
   ami           = data.aws_ami.centos.image_id
@@ -76,4 +87,4 @@ resource "aws_route53_record" "records" {
   type    = "A"
   ttl     = 30
   records = [aws_instance.instance[each.value["name"]].private_ip]
-}
+} */
