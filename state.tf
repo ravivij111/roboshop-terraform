@@ -17,9 +17,9 @@ terraform {
 
 }*/
 
-terraform {
+/*terraform {
   backend "s3" {
 
   }
-}
+}*/
 
