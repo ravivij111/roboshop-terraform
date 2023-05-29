@@ -37,15 +37,17 @@ env="dev"
 
 database_servers = {
 
+  mongodb = {
+    name          = "mongodb"
+    instance_type = "t3.micro"
+  }
+  /*
   rabbitmq = {
     name          = "rabbitmq"
     instance_type = "t3.small"
     password = "roboshop123"
   }
-  mongodb = {
-    name          = "mongodb"
-    instance_type = "t3.micro"
-  }
+
   redis = {
     name          = "redis"
     instance_type = "t3.small"
@@ -55,5 +57,5 @@ database_servers = {
     instance_type = "t3.small"
     password = "RoboShop@1"
   }
-
+*/
 }
