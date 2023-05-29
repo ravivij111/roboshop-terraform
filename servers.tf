@@ -10,7 +10,7 @@ module "database-servers" {
   app_type ="db"
 }
 
-module "app-servers" {
+/*module "app-servers" {
   depends_on = [module.database-servers]
   for_each = var.app_servers
   source = "./module"
@@ -19,7 +19,7 @@ module "app-servers" {
   instance_type = "t3.micro"
   password = lookup(each.value,"password",null)
   app_type ="app"
-}
+}*/
 
 
 
