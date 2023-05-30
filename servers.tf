@@ -11,14 +11,14 @@ module "database-servers" {
 }
 
 module "app-servers" {
- /* depends_on = [module.database-servers]
+  depends_on = [module.database-servers]
   for_each = var.app_servers
   source = "./module"
   component_name = each.value["name"]
   env = var.env
   instance_type = "t3.micro"
   password = lookup(each.value,"password",null)
-  app_type ="app" */
+  app_type ="app"
 }
 
 
