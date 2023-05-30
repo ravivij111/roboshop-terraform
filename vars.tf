@@ -4,4 +4,4 @@ variable "database_servers" {}
 
 
 
-variable "components" {}
+//variable "components" {}
