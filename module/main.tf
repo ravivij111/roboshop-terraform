@@ -13,7 +13,7 @@ resource "aws_instance" "instance" {
 resource "aws_route53_record" "records" {
 
   zone_id = "Z09194283TYN817J8N83P"
-  name    = "{var.component_name}-dev.r1devopsb.online"
+  name    = "${var.component_name}-dev.r1devopsb.online"
   type    = "A"
   ttl     = 30
   records = [aws_instance.instance.private_ip]
@@ -43,6 +43,7 @@ resource "null_resource" "provisioner" {
 }
 
 #Creating a role to get aws access to the component servers to retrieve the aws parameters from aws
+/*
 resource "aws_iam_role" "role" {
   name = "$var.{component}-${var.env}-role"
 
@@ -66,6 +67,7 @@ resource "aws_iam_role" "role" {
     tag-key = "tag-value"
   }
 }
+*/
 /* IAM Role Policy
 
 resource "aws_iam_role" "test_policy" {

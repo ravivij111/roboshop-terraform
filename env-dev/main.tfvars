@@ -40,6 +40,7 @@ database_servers = {
   mongodb = {
     name          = "mongodb"
     instance_type = "t3.micro"
+    password = "roboshop123"
   }
   /*
   rabbitmq = {
