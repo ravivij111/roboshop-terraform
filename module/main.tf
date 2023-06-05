@@ -19,6 +19,7 @@ resource "aws_route53_record" "records" {
   records = [aws_instance.instance.private_ip]
 }
 resource "null_resource" "provisioner" {
+
   count = var.provisioner ? 1 : 0
   depends_on = [aws_route53_record.records]
   triggers = { //If any time the private ip changes
