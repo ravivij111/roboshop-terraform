@@ -5,9 +5,9 @@ resource "aws_instance" "instance" {
   instance_type          = var.instance_type
   vpc_security_group_ids = [data.aws_security_group.Ravi_Secuity_All.id]
   #iam_instance_profile =  aws_iam_instance_profile.instance_profile
-  tags                   = {
-    Name = local.name
-  }
+  tags                   = var.app_type == "app" ? local.app_tags : local.db_tags
+   // Name = local.name
+
 }
 
 resource "aws_route53_record" "records" {
